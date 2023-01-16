@@ -13,4 +13,20 @@ export default class CarService {
     const carDomain = CarService.createCarDomain(createCar);
     return carDomain;
   }
+
+  public async getAllService() {
+    const carModel = new CarModel(); 
+    const cars = await carModel.findAll();
+    return cars.map((index) => CarService.createCarDomain(index));
+  }
+
+  public async getByIdService(id: string) {
+    const carModel = new CarModel(); 
+    const car = await carModel.findOne(id);
+    if (car) {
+      const newCar = CarService.createCarDomain(car);
+      return newCar;
+    }
+    return car;
+  }
 }
