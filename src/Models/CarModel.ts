@@ -30,4 +30,8 @@ export default class CarModel {
   public async findOne(id: string): Promise<ICar | null> {
     return this.model.findOne({ _id: id });
   }
+
+  public async update(id: string, obj: ICar | undefined) {
+    await this.model.updateOne({ _id: id }, { $set: { ...obj } });
+  }
 }

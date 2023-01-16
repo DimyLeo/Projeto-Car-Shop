@@ -29,4 +29,10 @@ export default class CarService {
     }
     return car;
   }
+
+  public async updateService(id: string, obj: ICar): Promise<Car | null> {
+    const carModel = new CarModel(); 
+    await carModel.update(id, obj);
+    return this.getByIdService(id);
+  }
 }
