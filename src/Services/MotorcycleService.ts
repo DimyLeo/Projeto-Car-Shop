@@ -13,4 +13,20 @@ export default class MotorcycleService {
     const bikeDomain = MotorcycleService.createBikeDomain(createBike);
     return bikeDomain;
   }
+
+  public async getAllService() {
+    const bikeModel = new MotorcycleModel(); 
+    const bikes = await bikeModel.findAll();
+    return bikes.map((index) => MotorcycleService.createBikeDomain(index));
+  }
+
+  public async getByIdService(id: string) {
+    const bikeModel = new MotorcycleModel(); 
+    const bike = await bikeModel.findOne(id);
+    if (bike) {
+      const newCar = MotorcycleService.createBikeDomain(bike);
+      return newCar;
+    }
+    return bike;
+  }
 }
